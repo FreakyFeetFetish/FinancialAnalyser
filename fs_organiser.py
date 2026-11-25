@@ -4,51 +4,54 @@ import pandas as pd
 
 pd.set_option("display.max_rows", None)
 
-ticker = input("Enter ticker: ")
 
-#   Loads the data from Yahoo Finance and stores it in dictionaries
-def load_financial_data(ticker):
+class CompanyFinancials:
+    def __init__(self, ticker):
+        self.ticker = ticker
+        self.cashFlow = {}
+        self.balanceSheet = {}
+        self.incomeStatement = {}
 
-    try:
-        tik = yf.Ticker(ticker)
+    def load_financial_data(self):  #   Loads the data from Yahoo Finance and stores it in dictionaries
 
-        bs = tik.get_balance_sheet()
-        ic = tik.get_income_stmt()
-        cf = tik.get_cash_flow()
+        try:
+            tik = yf.Ticker(self.ticker)
 
-        if bs.empty and ic.empty and cf.empty:
-            raise ValueError(f"{ticker} is an invalid ticker")
-    except ValueError:
-        pass
+            bs = tik.get_balance_sheet()
+            ic = tik.get_income_stmt()
+            cf = tik.get_cash_flow()
 
-    cashFlow = {}
-    balanceSheet = {}
-    incomeStatement = {}
+            if bs.empty and ic.empty and cf.empty:
+                raise ValueError(f"{ticker} is an invalid ticker")
+        except ValueError:
+            print("Invalid company")
 
-    for y in bs.columns:            # selects an entire collum within the scraped balancesheet
-        myYear = str(y)[:4]         # takes the first 4 letters of the collum, ex. 2024-12-31 and takes 2024
-        balanceSheet[myYear] = {}   # creates an empty folder: balanceSheet["2025"] = {}
+        for y in bs.columns:            # selects an entire collum within the scraped balance sheet
+            myYear = str(y)[:4]         # takes the first 4 letters of the collum, ex. 2024-12-31 and takes 2024
+            self.balanceSheet[myYear] = {}   # creates an empty folder: balanceSheet["2025"] = {}
 
-        for x in bs.index:          # Goes down the collum, and stores whatever vales
-            balanceSheet[myYear][x] = bs.loc[x, y]
+            for x in bs.index:          # Goes down the collum, and stores whatever vales
+                self.balanceSheet[myYear][x] = bs.loc[x, y]
 
-    for y in cf.columns:
-        myYear = str(y)[:4]
-        cashFlow[myYear] = {}
-        for x in cf.index:
-            cashFlow[myYear][x] = cf.loc[x, y]
+        for y in cf.columns:
+            myYear = str(y)[:4]
+            self.cashFlow[myYear] = {}
+            for x in cf.index:
+                self.cashFlow[myYear][x] = cf.loc[x, y]
 
-    for y in ic.columns:
-        myYear = str(y)[:4]
-        incomeStatement[myYear] = {}
-        for x in ic.index:
-            incomeStatement[myYear][x] = ic.loc[x, y]
+        for y in ic.columns:
+            myYear = str(y)[:4]
+            self.incomeStatement[myYear] = {}
+            for x in ic.index:
+                self.incomeStatement[myYear][x] = ic.loc[x, y]
 
-    return balanceSheet, cashFlow, incomeStatement, ticker
+user_ticker = input("Enter ticker: ")
 
-BalanceSheet, CashFlow, IncomeStatement, _ = load_financial_data(ticker)
+company = CompanyFinancials(user_ticker)
+company.load_financial_data()
 
-print(BalanceSheet["2026"]["OrdinarySharesNumber"])
+print(company.balanceSheet["2025"]["NetDebt"])
+
 
 
 
