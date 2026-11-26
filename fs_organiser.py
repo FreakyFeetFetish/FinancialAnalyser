@@ -54,15 +54,16 @@ class CompanyFinancials:
                 self.incomeStatement[myYear][x] = ic.loc[x, y]
 
 
-# --- Test Zone ---
-user_ticker = input("Enter ticker: ")
+# --- Test Zone (this block will only run I execute this code directly) ---
+if __name__ == "__main__":
+    user_ticker = input("Enter ticker: ")
 
-#Creates the CompanyFinances object and fills the dictionaries
-company = CompanyFinancials(user_ticker)
-company.load_financial_data()
+    #Creates the CompanyFinances object and fills the dictionaries
+    company = CompanyFinancials(user_ticker)
+    company.load_financial_data()
 
-# Check up to verify if program work
-print(company.balanceSheet["2025"]["NetDebt"])
+    # Check up to verify if program work
+    print(company.balanceSheet["2025"]["NetDebt"])
 
 
 

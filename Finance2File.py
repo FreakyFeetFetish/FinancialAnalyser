@@ -4,9 +4,7 @@
 import pandas as pd
 import yfinance as yf
 import os
-
-# Core Variables
-ticker = yf.Ticker("NVDA")
+from fs_organiser import CompanyFinancials
 
 # This block of code allows all the data to get printed into its file
 # Otherwise there is a cap to the num of columns and rows
@@ -18,9 +16,8 @@ pd.set_option("display.width", None)
 # Reason for this class is to create multiple recorded finance documents of different companies. 1 object per company
 # NOTE: within 'outputs' have program create new folder named ofter the ticker containing its unique finances
 class ReportExporter:
-    def __init__(self, tik, company = None):
+    def __init__(self, company):
         self.company = company      # Receives the CompanyFinancials object
-        self.tik = tik
 
     def store_data_file(self):
 
@@ -37,26 +34,28 @@ class ReportExporter:
         pathCS = os.path.join(output_dir, "cash_flow.csv")
         pathIC = os.path.join(output_dir, "income_statement.csv")
 
+        # Converts nested dictionary -> Data Frame -> .csv file
+        pd.DataFrame.from_dict(self.company.balanceSheet).to_csv(pathBS)
+        print(f"Wrote {self.company.ticker} to balance sheet")
 
-        bs = self.tik.balance_sheet
-        cf = self.tik.cash_flow
-        inc = self.tik.income_stmt
+        # Converts nested dictionary -> Data Frame -> .csv file
+        pd.DataFrame.from_dict(self.company.cashFlow).to_csv(pathCS)
+        print(f"Wrote {self.company.ticker} to cash flow")
 
-        with open(pathBS, "w") as myFile:   # Opens an instance where balance_sheet.csv can be edited
-            myFile.write(str(bs))           # Writes all data from bs into balance_sheet.csv
-            print("Wrote to balance sheet")
-
-        with open(pathCS, "w") as myFile:   # Opens an instance where cash_flow.csv can be edited
-            myFile.write(str(cf))           # Writes all data from bs into cash_flow.csv
-            print("Wrote to cash flow")
-
-        with open(pathIC, "w") as myFile:   # Opens an instance where income_statement.csv can be edited
-            myFile.write(str(inc))          # Writes all data from bs into income_statement.csv
-            print("Wrote to income statement")
-
-companyDocs1 = ReportExporter(ticker)       # Creates an object from the library
-companyDocs1.store_data_file()              # Uses the store Data method within the class
+        # Converts nested dictionary -> Data Frame -> .csv file
+        pd.DataFrame.from_dict(self.company.incomeStatement).to_csv(pathIC)
+        print(f"Wrote {self.company.ticker} to income statement")
 
 
-# This code looks so clean
-# Cleanest code ive ever writen
+
+# --- Hooking up the 2 classes ---
+if __name__ == "__main__":
+    user_ticker = input("Enter a Ticker: ")
+
+    # Creates an object from CompanyFinancials
+    company = CompanyFinancials(user_ticker)
+    company.load_financial_data()
+
+    # Creates and object from ReportExporter
+    companyDocs1 = ReportExporter(company)
+    companyDocs1.store_data_file()
