@@ -2,7 +2,6 @@
 
 # Libraries
 import pandas as pd
-import yfinance as yf
 import os
 from fs_organiser import CompanyFinancials
 
@@ -27,8 +26,10 @@ class ReportExporter:
         current_file_dir = os.path.dirname(os.path.abspath(__file__))
         base_dir = os.path.dirname(current_file_dir)              # Cuts off the last item again to get E:\Financial_Analysis
 
-        output_dir = os.path.join(base_dir, "outputs")            # adds the outputs folder to the end, so E:\Financial_Analysis\outputs
-        os.makedirs(output_dir, exist_ok=True)                    # Creates outputs folder incase it isn't downloaded
+        create_dir = os.path.join(base_dir, "outputs")            # adds the outputs folder to the end, so E:\Financial_Analysis\outputs
+        os.makedirs(create_dir, exist_ok=True)                    # Creates outputs folder incase it isn't downloaded
+        output_dir = os.path.join(create_dir, str(self.company.ticker))     # Adds the directory for the tickers unique folder
+        os.makedirs(output_dir, exist_ok=True)                              # Creates the tickers folder
 
         pathBS = os.path.join(output_dir, "balance_sheet.csv")
         pathCS = os.path.join(output_dir, "cash_flow.csv")

@@ -2,6 +2,7 @@
 
 # Libraries
 import yfinance as yf
+import sys
 
 # Fetches and stores the financial statement data for a provided ticker
 class CompanyFinancials:
@@ -25,7 +26,9 @@ class CompanyFinancials:
 
             # Checks if at least one statement contains data, otherwise it's an invalid Ticker
             if bs.empty and ic.empty and cf.empty:
-                raise ValueError(f"{self.ticker} is an invalid ticker")
+                print(ValueError(f"{self.ticker} is an invalid ticker"))
+                # sys.exit(1)  # Exits the program in case of error
+
 
         except ValueError:
             # Python requires an except block to handle the ValueError raised above
@@ -64,9 +67,3 @@ if __name__ == "__main__":
 
     # Check up to verify if program work
     print(company.balanceSheet["2025"]["NetDebt"])
-
-
-
-
-
-
