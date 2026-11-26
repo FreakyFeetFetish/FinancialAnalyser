@@ -1,4 +1,5 @@
-Enter ticker: AAPL
-62723000000.0
+Wrote to balance sheet
+Wrote to cash flow
+Wrote to income statement
 
 Process finished with exit code 0
