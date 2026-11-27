@@ -1,8 +1,6 @@
-C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\Finance2File.py
-Enter a Ticker: hjkfsdgyhkfsdja
-hjkfsdgyhkfsdja is an invalid ticker
-Wrote hjkfsdgyhkfsdja to balance sheet
-Wrote hjkfsdgyhkfsdja to cash flow
-Wrote hjkfsdgyhkfsdja to income statement
+C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\FinancialCalculations.py
+Enter ticker : AAPL
+Enter year : 2024
+23
 
 Process finished with exit code 0
