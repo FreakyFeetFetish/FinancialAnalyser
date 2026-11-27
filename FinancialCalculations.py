@@ -8,16 +8,16 @@ class Calculations:
         return round((self.company.incomeStatement[year]["NetIncome"] / self.company.incomeStatement[year]["TotalRevenue"]) * 100)
 
     def EPS(self, year):
-        return round(self.company.incomeStatement[year]["NetIncome"] / self.company.incomeStatement[year]["BasicAverageShares"])
+        return round(self.company.incomeStatement[year]["NetIncome"] / self.company.incomeStatement[year]["BasicAverageShares"], 2)
 
     def WorkingCapitalRatio(self, year):
-        return round(self.company.balanceSheet[year]["CurrentAssets"] / self.company.balanceSheet[year]["CurrentLiabilities"])
+        return round(self.company.balanceSheet[year]["CurrentAssets"] / self.company.balanceSheet[year]["CurrentLiabilities"], 2)
 
     def ROE(self, year):
-        return round(self.company.incomeStatement[year]["NetIncome"] / self.company.balanceSheet[year]["StockholdersEquity"])
+        return round(self.company.incomeStatement[year]["NetIncome"] / self.company.balanceSheet[year]["StockholdersEquity"], 2)
 
     def DebtToEquityRatio(self, year):
-        return round(self.company.balanceSheet[year]["TotalDebt"] / self.company.balanceSheet[year]["StockholdersEquity"])
+        return round(self.company.balanceSheet[year]["TotalDebt"] / self.company.balanceSheet[year]["StockholdersEquity"], 2)
 
     def FreeCashFlow(self, year):
         return round(self.company.cashFlow[year]["FreeCashFlow"])

@@ -1,11 +1,11 @@
 C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\FinancialCalculations.py
 Enter ticker : AAPL
-Enter year : 2026
-Net Profit Margin (2026): 28%
-EPS (2026): 9
-Working Capital Ratio (2026): 1
-ROE (2026): 1
-Debt-To-Equity Ratio (2026): 1
-Free Cash Flow (2026): 136056000000
+Enter year : 2025
+Net Profit Margin (2025): 27%
+EPS (2025): 7.49
+Working Capital Ratio (2025): 0.89
+ROE (2025): 1.52
+Debt-To-Equity Ratio (2025): 1.34
+Free Cash Flow (2025): 98767000000
 
 Process finished with exit code 0
