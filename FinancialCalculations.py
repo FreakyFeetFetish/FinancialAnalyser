@@ -13,6 +13,15 @@ class Calculations:
     def WorkingCapitalRatio(self, year):
         return round(self.company.balanceSheet[year]["CurrentAssets"] / self.company.balanceSheet[year]["CurrentLiabilities"])
 
+    def ROE(self, year):
+        return round(self.company.incomeStatement[year]["NetIncome"] / self.company.balanceSheet[year]["StockholdersEquity"])
+
+    def DebtToEquityRatio(self, year):
+        return round(self.company.balanceSheet[year]["TotalDebt"] / self.company.balanceSheet[year]["StockholdersEquity"])
+
+    def FreeCashFlow(self, year):
+        return round(self.company.cashFlow[year]["FreeCashFlow"])
+
 
 
 
@@ -25,4 +34,10 @@ if __name__ == "__main__":
     company.load_financial_data()
 
     ratios = Calculations(company)
-    print(ratios.EPS(year))
+    print(f"Net Profit Margin ({year}): {ratios.NetProfitMargin(year)}%")
+    print(f"EPS ({year}): {ratios.EPS(year)}")
+    print(f"Working Capital Ratio ({year}): {ratios.WorkingCapitalRatio(year)}")
+    print(f"ROE ({year}): {ratios.ROE(year)}")
+    print(f"Debt-To-Equity Ratio ({year}): {ratios.DebtToEquityRatio(year)}")
+    print(f"Free Cash Flow ({year}): {ratios.FreeCashFlow(year)}")
+
