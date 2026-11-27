@@ -10,6 +10,8 @@ class CompanyFinancials:
     # Creates instance attributes for the ticker and its financial statemetns
     def __init__(self, ticker):
         self.ticker = ticker
+        self.price = None
+        self.marketCap = None
         self.cashFlow = {}
         self.balanceSheet = {}
         self.incomeStatement = {}
@@ -24,10 +26,13 @@ class CompanyFinancials:
             ic = tik.get_income_stmt()
             cf = tik.get_cash_flow()
 
+            self.price = tik.fast_info.last_price
+            self.marketCap = tik.info.get("marketCap")
+
             # Checks if at least one statement contains data, otherwise it's an invalid Ticker
             if bs.empty and ic.empty and cf.empty:
                 print(ValueError(f"{self.ticker} is an invalid ticker"))
-                # sys.exit(1)  # Exits the program in case of error
+                return False    # Incase someone types a bad ticker, it skips and asks again
 
 
         except ValueError:
@@ -55,6 +60,9 @@ class CompanyFinancials:
             self.incomeStatement[myYear] = {}
             for x in ic.index:
                 self.incomeStatement[myYear][x] = ic.loc[x, y]
+
+
+
 
 
 # --- Test Zone (this block will only run I execute this code directly) ---

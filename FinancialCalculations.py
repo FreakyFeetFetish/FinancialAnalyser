@@ -71,10 +71,19 @@ class Calculations:
     def PSratio(self, year):
         return round(self.company.marketCap / self.company.incomeStatement[year]["TotalRevenue"], 2)
 
+    # --- Year by year Comparison ---
 
+    # loops through all years from oldest to newest for any ratio method
+    def Get_Metric_over_time(self, metric_function):
+        years = sorted(self.company.incomeStatement.keys())
+        history = {}
 
-
-
+        for y in years:
+            try:
+                history[y] = float(metric_function(y))
+            except(KeyError, ZeroDivisionError, TypeError):
+                history[y] = None   # Deals with missing years
+        return history
 
 
 # --- Test Zone ---
@@ -98,4 +107,5 @@ if __name__ == "__main__":
     print(f"PEratio ({year}): {ratios.PEratio(year)}")
     print(f"Price-to-Book ratio ({year}): {ratios.PBratio(year)}")
     print(f"Price-to-Shares ratio ({year}): {ratios.PSratio(year)}")
+    print(f"Metric over time :{ratios.Get_Metric_over_time(ratios.NetProfitMargin)}")
 

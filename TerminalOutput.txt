@@ -1,18 +1,18 @@
-C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\FinancialCalculations.py
-Enter ticker : AAPL
-Enter year : 2026
-Net Profit Margin (2026): 27.6%
-Gross Profit Margin (2026): 48.79%
-Operating Profit Margin (2026): 33.01%
-ROE (2026): 117.92%
-ROA (2026): 32.67%
-Working Capital Ratio (2026): 1.02
-Debt-To-Equity Ratio (2026): 0.71
-EPS (2026): 9.01
-Free Cash Flow (2026): 136056000000
-Market Cap: 5167353167872
-PEratio (2026): 39.47
-Price-to-Book ratio (2026): 46.1
-Price-to-Shares ratio (2026): 10.79
+C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\main.py
+Enter company ticker per line (Press Enter on a blank line when finished)
+> KO
+Wrote KO to balance sheet
+Wrote KO to cash flow
+Wrote KO to income statement
+> aapl
+Wrote AAPL to balance sheet
+Wrote AAPL to cash flow
+Wrote AAPL to income statement
+> NVDA
+Wrote NVDA to balance sheet
+Wrote NVDA to cash flow
+Wrote NVDA to income statement
+>
+['KO', 'AAPL', 'NVDA']
 
 Process finished with exit code 0
