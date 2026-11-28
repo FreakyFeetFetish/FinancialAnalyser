@@ -19,7 +19,6 @@ while True:
     if not comp.load_financial_data():
         continue
 
-
     # Creates and uses ReportExporter Class
     compOrganise = ReportExporter(comp)
     compOrganise.store_data_file()
@@ -27,11 +26,10 @@ while True:
     # Adds the current ticker to list of Companies
     companies.append(comp)
 
+# Only prints the ticker's within companies list and not the financials
 print([c.ticker for c in companies])
 
-print("")
-
-year = input("Enter year: ").strip()
+year = input("\nEnter year: ").strip()
 
 for company in companies:
     ratios = Calculations(company)

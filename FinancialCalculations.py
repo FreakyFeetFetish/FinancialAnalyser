@@ -8,7 +8,6 @@ class Calculations:
     def __init__(self, company):
         self.company = company
 
-
     # --- Profitability Ratios ---
 
     # The percentage of Revenue kept as net profit after all expenses and taxes
@@ -85,7 +84,15 @@ class Calculations:
                 history[y] = None   # Deals with missing years
         return history
 
-    def OutputRatios(self, year):
+
+    def OutputRatios(self,  year = None):
+
+        # If no year is chosen or is invalid, it will pick the latest available
+        available_years = sorted(self.company.incomeStatement.keys())
+        if not year or year not in available_years:
+            year = available_years[-1]    # makes year the latest available
+
+        # Prints a variety of calculations
         print( f"\n====== {self.company.ticker} ({year}) ======")
         print(f"Net Profit Margin ({year}): {self.NetProfitMargin(year)}%")
         print(f"Gross Profit Margin ({year}): {self.GrossProfitMargin(year)}%")
@@ -101,8 +108,6 @@ class Calculations:
         print(f"Price-to-Book ratio ({year}): {self.PBratio(year)}")
         print(f"Price-to-Shares ratio ({year}): {self.PSratio(year)}")
         print(f"Metric over time :{self.Get_Metric_over_time(self.NetProfitMargin)}\n")
-
-
 
 
 # --- Test Zone ---
