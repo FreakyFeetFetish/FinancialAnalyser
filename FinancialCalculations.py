@@ -85,6 +85,25 @@ class Calculations:
                 history[y] = None   # Deals with missing years
         return history
 
+    def OutputRatios(self, year):
+        print( f"\n====== {self.company.ticker} ({year}) ======")
+        print(f"Net Profit Margin ({year}): {self.NetProfitMargin(year)}%")
+        print(f"Gross Profit Margin ({year}): {self.GrossProfitMargin(year)}%")
+        print(f"Operating Profit Margin ({year}): {self.OperatingProfitMargin(year)}%")
+        print(f"ROE ({year}): {self.ROE(year)}%")
+        print(f"ROA ({year}): {self.ROA(year)}%")
+        print(f"Working Capital Ratio ({year}): {self.WorkingCapitalRatio(year)}")
+        print(f"Debt-To-Equity Ratio ({year}): {self.DebtToEquityRatio(year)}")
+        print(f"EPS ({year}): {self.EPS(year)}")
+        print(f"Free Cash Flow ({year}): {self.FreeCashFlow(year)}")
+        print(f"Market Cap: {self.MarketCapitalisation()}")
+        print(f"PEratio ({year}): {self.PEratio(year)}")
+        print(f"Price-to-Book ratio ({year}): {self.PBratio(year)}")
+        print(f"Price-to-Shares ratio ({year}): {self.PSratio(year)}")
+        print(f"Metric over time :{self.Get_Metric_over_time(self.NetProfitMargin)}\n")
+
+
+
 
 # --- Test Zone ---
 if __name__ == "__main__":
@@ -94,18 +113,5 @@ if __name__ == "__main__":
     company.load_financial_data()
 
     ratios = Calculations(company)
-    print(f"Net Profit Margin ({year}): {ratios.NetProfitMargin(year)}%")
-    print(f"Gross Profit Margin ({year}): {ratios.GrossProfitMargin(year)}%")
-    print(f"Operating Profit Margin ({year}): {ratios.OperatingProfitMargin(year)}%")
-    print(f"ROE ({year}): {ratios.ROE(year)}%")
-    print(f"ROA ({year}): {ratios.ROA(year)}%")
-    print(f"Working Capital Ratio ({year}): {ratios.WorkingCapitalRatio(year)}")
-    print(f"Debt-To-Equity Ratio ({year}): {ratios.DebtToEquityRatio(year)}")
-    print(f"EPS ({year}): {ratios.EPS(year)}")
-    print(f"Free Cash Flow ({year}): {ratios.FreeCashFlow(year)}")
-    print(f"Market Cap: {ratios.MarketCapitalisation()}")
-    print(f"PEratio ({year}): {ratios.PEratio(year)}")
-    print(f"Price-to-Book ratio ({year}): {ratios.PBratio(year)}")
-    print(f"Price-to-Shares ratio ({year}): {ratios.PSratio(year)}")
-    print(f"Metric over time :{ratios.Get_Metric_over_time(ratios.NetProfitMargin)}")
+    ratios.OutputRatios(year)
 

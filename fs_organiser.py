@@ -2,7 +2,6 @@
 
 # Libraries
 import yfinance as yf
-import sys
 
 # Fetches and stores the financial statement data for a provided ticker
 class CompanyFinancials:
@@ -60,6 +59,8 @@ class CompanyFinancials:
             self.incomeStatement[myYear] = {}
             for x in ic.index:
                 self.incomeStatement[myYear][x] = ic.loc[x, y]
+
+        return True
 
 
 

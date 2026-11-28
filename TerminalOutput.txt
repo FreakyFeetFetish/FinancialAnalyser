@@ -1,18 +1,67 @@
 C:\Users\pe2nz\AppData\Local\Microsoft\WindowsApps\python3.13.exe E:\Financial_Analysis\modules\main.py
 Enter company ticker per line (Press Enter on a blank line when finished)
-> KO
-Wrote KO to balance sheet
-Wrote KO to cash flow
-Wrote KO to income statement
 > aapl
 Wrote AAPL to balance sheet
 Wrote AAPL to cash flow
 Wrote AAPL to income statement
-> NVDA
+> nvda
 Wrote NVDA to balance sheet
 Wrote NVDA to cash flow
 Wrote NVDA to income statement
+> ko
+Wrote KO to balance sheet
+Wrote KO to cash flow
+Wrote KO to income statement
 >
-['KO', 'AAPL', 'NVDA']
+['AAPL', 'NVDA', 'KO']
 
-Process finished with exit code 0
+Enter year: 2026
+
+====== AAPL (2026) ======
+Net Profit Margin (2026): 27.6%
+Gross Profit Margin (2026): 48.79%
+Operating Profit Margin (2026): 33.01%
+ROE (2026): 117.92%
+ROA (2026): 32.67%
+Working Capital Ratio (2026): 1.02
+Debt-To-Equity Ratio (2026): 0.71
+EPS (2026): 9.01
+Free Cash Flow (2026): 136056000000
+Market Cap: 5210368901120
+PEratio (2026): 39.79
+Price-to-Book ratio (2026): 46.48
+Price-to-Shares ratio (2026): 10.88
+Metric over time :{'2022': nan, '2023': 25.31, '2024': 23.97, '2025': 26.92, '2026': 27.6}
+
+
+====== NVDA (2026) ======
+Net Profit Margin (2026): 55.6%
+Gross Profit Margin (2026): 71.07%
+Operating Profit Margin (2026): 60.38%
+ROE (2026): 76.33%
+ROA (2026): 58.06%
+Working Capital Ratio (2026): 3.91
+Debt-To-Equity Ratio (2026): 0.07
+EPS (2026): 4.93
+Free Cash Flow (2026): 96676000000
+Market Cap: 3633882071040
+PEratio (2026): 30.53
+Price-to-Book ratio (2026): 23.1
+Price-to-Shares ratio (2026): 16.83
+Metric over time :{'2022': nan, '2023': 16.19, '2024': 48.85, '2025': 55.85, '2026': 55.6}
+
+
+====== KO (2026) ======
+Traceback (most recent call last):
+  File "E:\Financial_Analysis\modules\main.py", line 38, in <module>
+    ratios.OutputRatios(year)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\Financial_Analysis\modules\FinancialCalculations.py", line 90, in OutputRatios
+    print(f"Net Profit Margin ({year}): {self.NetProfitMargin(year)}%")
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\Financial_Analysis\modules\FinancialCalculations.py", line 16, in NetProfitMargin
+    return round((self.company.incomeStatement[year]["NetIncome"] / self.company.incomeStatement[year]["TotalRevenue"]) * 100, 2)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: '2026'
+
+Process finished with exit code 1
